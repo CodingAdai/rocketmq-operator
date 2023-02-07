@@ -32,7 +32,8 @@ spec:
   replicaPerGroup: 1
   # brokerImage is the customized docker image repo of the RocketMQ broker
   brokerImage: "registry.cn-shanghai.aliyuncs.com/fyzs-base/rocketmq-broker-server:2023-02-07-16-45-19"
-  imagePullSecrets: "acr"
+  imagePullSecrets:
+    - "acr"
   # imagePullPolicy is the image pull policy
   imagePullPolicy: Always
   # resources describes the compute resource requirements and limits
@@ -89,7 +90,8 @@ spec:
   size: 1
   # nameServiceImage is the customized docker image repo of the RocketMQ name service
   nameServiceImage: "registry.cn-shanghai.aliyuncs.com/fyzs-base/rocketmq-name-server:2023-02-07-17-18-54"
-  imagePullSecrets: "acr"
+  imagePullSecrets:
+    - "acr"
   # imagePullPolicy is the image pull policy
   imagePullPolicy: Always
   # hostNetwork can be true or false
