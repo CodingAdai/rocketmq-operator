@@ -108,11 +108,20 @@ helm install kibana --version 8.5.1 elastic/kibana --namespace prod \
 --set service.type=NodePort -f values.yaml
 # 这个不知道怎么传文件参数，暂时本地修改values.yaml文件实现
 
+
+# Dubbo Admin
+https://github.com/CodingAdai/dubbo-admin
+
+# RocketMQ dashboard
+开启登录和用户配置
+https://github.com/apache/rocketmq-dashboard/blob/master/docs/1_0_0/UserGuide_CN.md
+
 # 删除
 helm uninstall zookeeper
 helm uninstall mysql
 helm uninstall redis
 helm uninstall elasticsearch
+helm uninstall kibana
 
 
 
