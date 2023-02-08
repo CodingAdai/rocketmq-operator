@@ -82,7 +82,7 @@ helm install elasticsearch --version 8.5.1 elastic/elasticsearch --set replicas=
 --set secret.password='lk36j7XSL030dhl629dHS'
 
 # 测试插件
-curl -k --user elastic:lk36j7XSL030dhl629dHS -X GET https://localhost:9200/_cat/plugins
+curl -k --user elastic:lk36j7XSL030dhl629dHS -X GET https://elasticsearch-master.prod:9200/_cat/plugins
 
 # bitnami仓库版本，功能更丰富，TODO 待完善
 #helm install elasticsearch  bitnami/elasticsearch --namespace=prod  --version 19.5.10 \
@@ -90,6 +90,23 @@ curl -k --user elastic:lk36j7XSL030dhl629dHS -X GET https://localhost:9200/_cat/
 #--set image.repository="" \
 #--set image.tag="" \
 #--set-json 'image.pullSecrets=[{"name":"acr"}]' \
+
+
+
+# Kibana
+helm install kibana --version 8.5.1 elastic/kibana --namespace prod \
+--set elasticsearchHosts=https://elasticsearch-master.prod:9200 \
+--set-json 'resources.requests={"cpu":"100m","memory":"1Gi"}' \
+--set-json 'resources.limits={"cpu":"500m","memory":"2Gi"}' \
+--set service.type=NodePort
+
+
+./helm install kibana --version 8.5.1 elastic/kibana --namespace prod \
+--set elasticsearchHosts=https://elasticsearch-master.prod:9200 \
+--set-json 'resources.requests={"cpu":"100m","memory":"1Gi"}' \
+--set-json 'resources.limits={"cpu":"500m","memory":"2Gi"}' \
+--set service.type=NodePort -f values.yaml
+# 这个不知道怎么传文件参数，暂时本地修改values.yaml文件实现
 
 # 删除
 helm uninstall zookeeper
