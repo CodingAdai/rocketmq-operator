@@ -43,7 +43,7 @@ spec:
       cpu: "250m"
     limits:
       memory: "4096Mi"
-      cpu: "500m"
+      cpu: "1000m"
   # allowRestart defines whether allow pod restart
   allowRestart: true
   # storageMode can be EmptyDir, HostPath, StorageClass
@@ -87,7 +87,7 @@ metadata:
   namespace: prod
 spec:
   # size is the the name service instance number of the name service cluster
-  size: 1
+  size: 2
   # nameServiceImage is the customized docker image repo of the RocketMQ name service
   nameServiceImage: "registry.cn-shanghai.aliyuncs.com/fyzs-base/rocketmq-name-server:2023-02-07-17-18-54"
   imagePullSecrets:

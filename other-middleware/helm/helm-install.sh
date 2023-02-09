@@ -28,25 +28,35 @@ helm install zookeeper bitnami/zookeeper --namespace prod --version 11.1.2 \
 --set-json 'resources.limits={"cpu":"500m","memory":"2000Mi"}'
 
 
+# 认证
+--set auth.client.enabled=true \
+--set auth.client.clientUser=admin \
+--set auth.client.clientPassword='$SG0e2ep}hbT0NQ' \
+--set auth.client.serverUsers=admin \
+--set auth.client.serverPasswords='$SG0e2ep}hbT0NQ' \
+
+
+
+
 # Redis
 helm install redis bitnami/redis --namespace prod  --version 17.7.2 \
 --set architecture=replication \
---set auth.password='123qwe@!~' \
+--set auth.password='QouW4dtlf2S4WK3BCS' \
 --set master.count=1 \
 --set-json 'master.disableCommands=[]' \
 --set master.startupProbe.enabled=true \
 --set master.persistence.storageClass="alibabacloud-cnfs-nas" \
 --set master.persistence.size="2Gi" \
 --set-json 'master.resources.requests={"cpu":"50m","memory":"100Mi"}' \
---set-json 'master.resources.limits={"cpu":"500m","memory":"200Mi"}' \
+--set-json 'master.resources.limits={"cpu":"200m","memory":"200Mi"}' \
 --set replica.replicaCount=1 \
 --set-json 'replica.disableCommands=[]' \
 --set-json 'replica.resources.requests={"cpu":"50m","memory":"100Mi"}' \
---set-json 'replica.resources.limits={"cpu":"500m","memory":"200Mi"}' \
+--set-json 'replica.resources.limits={"cpu":"200m","memory":"200Mi"}' \
 --set replica.persistence.storageClass="alibabacloud-cnfs-nas" \
 --set replica.persistence.size="2Gi" \
 --set metrics.enabled=true \
---set-json 'metrics.resources.requests={"cpu":"10m","memory":"100Mi"}' \
+--set-json 'metrics.resources.requests={"cpu":"50m","memory":"100Mi"}' \
 --set-json 'metrics.resources.limits={"cpu":"100m","memory":"200Mi"}' \
 --set-json 'metrics.service.annotations={"prometheus.io/scrape":"true","prometheus.io/port":"9121"}'
 
@@ -65,11 +75,11 @@ helm install elasticsearch --version 7.17.3 elastic/elasticsearch --set replicas
 --set imagePullSecrets[0].name=acr \
 --set-json 'resources.requests={"cpu":"500m","memory":"2Gi"}' \
 --set-json 'resources.limits={"cpu":"2000m","memory":"4Gi"}' \
---set volumeClaimTemplate.resources.requests.storage='30Gi' \
+--set volumeClaimTemplate.resources.requests.storage='50Gi' \
 --set volumeClaimTemplate.storageClassName='alibabacloud-cnfs-nas'
 
 # 8.5.1
-helm install elasticsearch --version 8.5.1 elastic/elasticsearch --set replicas=3 --namespace prod \
+helm install elasticsearch --version 8.5.1 elastic/elasticsearch --set replicas=2 --namespace prod \
 --set image=registry-vpc.cn-shanghai.aliyuncs.com/fyzs-base/elasticsearch \
 --set imageTag=8.5.1 \
 --set imagePullSecrets[0].name=acr \
@@ -77,9 +87,9 @@ helm install elasticsearch --version 8.5.1 elastic/elasticsearch --set replicas=
 --set minimumMasterNodes=2 \
 --set-json 'resources.requests={"cpu":"500m","memory":"2Gi"}' \
 --set-json 'resources.limits={"cpu":"2000m","memory":"4Gi"}' \
---set volumeClaimTemplate.resources.requests.storage='30Gi' \
+--set volumeClaimTemplate.resources.requests.storage='50Gi' \
 --set volumeClaimTemplate.storageClassName='alibabacloud-cnfs-nas' \
---set secret.password='lk36j7XSL030dhl629dHS'
+--set secret.password='EtMQATxnO3y4umvFJX'
 
 # 测试插件
 curl -k --user elastic:lk36j7XSL030dhl629dHS -X GET https://elasticsearch-master.prod:9200/_cat/plugins
