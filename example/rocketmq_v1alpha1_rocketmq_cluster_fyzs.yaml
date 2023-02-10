@@ -31,7 +31,7 @@ spec:
   # replicaPerGroup is the number of each broker cluster
   replicaPerGroup: 1
   # brokerImage is the customized docker image repo of the RocketMQ broker
-  brokerImage: "registry.cn-shanghai.aliyuncs.com/fyzs-base/rocketmq-broker-server:2023-02-07-16-45-19"
+  brokerImage: "registry-vpc.cn-shanghai.aliyuncs.com/fyzs-base/rocketmq-broker-server:2023-02-07-16-45-19"
   imagePullSecrets:
     - name: "acr"
   # imagePullPolicy is the image pull policy
@@ -89,7 +89,7 @@ spec:
   # size is the the name service instance number of the name service cluster
   size: 2
   # nameServiceImage is the customized docker image repo of the RocketMQ name service
-  nameServiceImage: "registry.cn-shanghai.aliyuncs.com/fyzs-base/rocketmq-name-server:2023-02-07-17-18-54"
+  nameServiceImage: "registry-vpc.cn-shanghai.aliyuncs.com/fyzs-base/rocketmq-name-server:2023-02-07-17-18-54"
   imagePullSecrets:
     - name: "acr"
   # imagePullPolicy is the image pull policy
@@ -125,7 +125,7 @@ spec:
         storageClassName: rocketmq-storage
         resources:
           requests:
-            storage: 1Gi
+            storage: 2Gi
 
 ---
 apiVersion: rocketmq.apache.org/v1alpha1

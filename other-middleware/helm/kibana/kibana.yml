@@ -1,6 +1,0 @@
-elasticsearch.hosts: ["https://elasticsearch-master.prod:9200"]
-server.publicBaseUrl: https://sh-kibana.upupfarm.com
-xpack.reporting.roles.enabled: false
-xpack.security.encryptionKey: "eBqYsTXSU1o1vpMdMCebZ3qLI8JS988n"
-xpack.encryptedSavedObjects.encryptionKey: "aJgqnVVQt627JgrILaad5cuZMgx1rNTQ"
-xpack.reporting.encryptionKey: "gUSkbSnwBie4U2B1WpnadKWfULO0vqsV"
